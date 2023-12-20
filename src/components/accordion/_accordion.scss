@@ -1,0 +1,55 @@
+.accordion {
+    max-width: 700px;
+    &-item {
+        background-color: #fff;
+        // border: 1px solid rgba(0, 0, 0, 0.125);
+       
+        &:first-of-type {
+            border-top-left-radius: 0.25rem;
+            border-top-right-radius: 0.25rem;
+        }
+        &:last-of-type {
+            border-bottom-right-radius: 0.25rem;
+            border-bottom-left-radius: 0.25rem;
+            .accordion-button.collapsed {
+                border-bottom-right-radius: calc(0.25rem - 1px);
+                border-bottom-left-radius: calc(0.25rem - 1px);
+            }
+        }
+        &:not(:first-of-type){
+            border-top: 0;
+        }
+    }
+    &-button {
+        border-radius: 0;
+    }
+    &-collapse {
+        overflow: hidden;
+        // height: 0;
+       line-height: 1.7;  // set line-height to prevent useRef height glitch 
+        transition: height .3s ease;
+        
+        &.show {
+        }
+    }
+    &-header {
+        margin-bottom: 0 !important;
+    }
+    &-button {
+        width: 100%;
+        padding: 1rem 1.25rem;
+        justify-content: space-between;
+        .endIcon {
+            transition: transform .3s ease;
+            transform: rotateZ(180deg);
+        }
+        &:not(.collapsed) {
+            .endIcon {
+                transform: none;
+            }
+        }
+    }
+    &-body {
+        padding: 1rem 1.25rem;
+    }
+}
