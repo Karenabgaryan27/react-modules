@@ -30,17 +30,23 @@ export default function Modal({
             {display === "block" && (
                 <div
                     className={`modal fade ${isOpen ? "show" : ""}`}
-                    onClick={() => setIsOpen(false)}
+                    onClick={(e) => {
+                        if(e.target.closest('.modal-content'))  return
+                        setIsOpen(false);
+                    }}
                     onTransitionEnd={() => !isOpen && setDisplay("none")}
                 >
                     <div className={`modal-dialog ${className}`}>
                         <div
                             className={`modal-content`}
-                            onClick={(e) => e.stopPropagation()}
+                            // onClick={(e) => e.stopPropagation()} // this preventing dropdowns located in it to close so it's commented
                             onTransitionEnd={(e) => e.stopPropagation()}
                         >
                             <div className="modal-header">
-                                <h5 className="modal-title" id="exampleModalLabel">
+                                <h5
+                                    className="modal-title"
+                                    id="exampleModalLabel"
+                                >
                                     {title}
                                 </h5>
                                 <Button
@@ -53,15 +59,21 @@ export default function Modal({
                             </div>
                             <div className="modal-body">
                                 {children}
-                                {Child && <Child parentCallback={() => console.log("parent callback")} />}
+                                {Child && (
+                                    <Child
+                                        parentCallback={() =>
+                                            console.log("parent callback")
+                                        }
+                                    />
+                                )}
                             </div>
                             <div className="modal-footer">
                                 <Button
-                                    variant="contained" 
+                                    variant="contained"
                                     color="secondary"
                                     style={{ marginRight: "10px" }}
                                     onClick={() => setIsOpen(false)}
-                                    name='close'
+                                    name="close"
                                 />
                                 <Button variant="contained" name="submit" />
                             </div>
