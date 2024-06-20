@@ -8,7 +8,7 @@ export default function MultiSelect({
     placeholder = "select tags",
     className = "",
     variant = "outlined",
-    color='secondary',
+    color = "secondary",
     toggleIcon,
     children,
     limitTags,
@@ -104,7 +104,7 @@ export default function MultiSelect({
                 {selectedItems.map(({ startIcon, endIcon, title, id }, index) => {
                     if (index >= limitTags) return;
                     return (
-                        <div className="multi-select-tag" key={index}>
+                        <div className="multi-select-tag" key={index} onClick={(e) => e.stopPropagation()}>
                             {startIcon && <span className="startIcon">{startIcon}</span>}
                             <span className={`multi-select-tag-title`}>{title}</span>
                             {endIcon && <span className="endIcon">{endIcon}</span>}
@@ -129,6 +129,7 @@ export default function MultiSelect({
         );
     };
 
+
     // don't render menu while it closed (replace "isOpen" variable with "isAnimate" from select classname and remove commented isOpen scopes around menu)
     // const [isAnimate, setIsAnimate] = useState(false);
 
@@ -143,24 +144,18 @@ export default function MultiSelect({
                 <Button
                     className={`multi-select-toggle`}
                     data-toggle="select"
-                    // onClick={() => (isOpen ? closeMenu() : openMenu())}
+                    onClick={() => (isOpen ? closeMenu() : openMenu())}
                     variant={variant}
                     color={color}
                     // onKeyDown={handleKeyDown}
                 >
                     {!items.length ? getPlaceholder() : getSelectedItems()}
-                    {/* <span
-                        className="endIcon multi-select-toggle-icon "
-                        onClick={() => (isOpen ? closeMenu() : openMenu())}
+                    <span
+                        className="endIcon multi-select-toggle-icon"
+                        // onClick={() => (isOpen ? closeMenu() : openMenu())}
                     >
                         {toggleIcon || chevronDown}
-                    </span> */}
-                    <div
-                        className={`btn btn-circle-${color} endIcon multi-select-toggle-icon`}
-                        onClick={() => (isOpen ? closeMenu() : openMenu())}
-                    >
-                        {toggleIcon || chevronDown}
-                    </div>
+                    </span>
                 </Button>
             </div>
 

@@ -80,9 +80,8 @@ export default function BasicChat({ callback = localRequest }) {
         const newMessages = [...messages, userMessage]
         setMessages(newMessages);
         setValue("");
-        setTimeout(()=>setIsTyping(true),1000)
         
-        
+        setIsTyping(true)
         const botMessage = await createBotMessage(newMessages);
         setMessages([...newMessages, botMessage]);
         setIsTyping(false);
@@ -116,7 +115,7 @@ export default function BasicChat({ callback = localRequest }) {
             </div>
 
             <div className="basic-chat-footer">
-                <div className="wrapper">
+                <div className={`wrapper ${isTyping ? "on-hold" : ""}`}>
                     <Field
                         value={value}
                         variant="text"

@@ -239,7 +239,7 @@ const MultiSelectSection = () => {
     return (
         <section>
             <div className="container">
-                <h2 className="display-2">select badge</h2>
+                <h2 className="display-2">Multiselect</h2>
                 <div className="select-group" style={{ display: "flex", flexWrap: "wrap", gap: "30px" }}>
                     <MultiSelect
                         {...{

@@ -47,7 +47,7 @@ export default function Autocomplete({
     };
 
     const handleChange = (e) => {
-        if(!isOpen) openMenu()
+        if (!isOpen) openMenu();
         let tempItems = [...items];
         tempItems = tempItems.filter((item) => {
             if (item.title.toUpperCase().indexOf(e.target.value.toUpperCase()) > -1) {
@@ -65,7 +65,6 @@ export default function Autocomplete({
         setItems(tempItems);
 
         setActiveOption(tempItems.findIndex((item) => item.isActive === true));
-
     };
 
     const scrollIntoView = () => {
@@ -95,7 +94,7 @@ export default function Autocomplete({
                 break;
             case "Enter":
                 activeOptionRef.current?.click();
-                isOpen && setTimeout(()=>closeMenu(),0) 
+                isOpen && setTimeout(() => closeMenu(), 0);
                 break;
         }
     };
@@ -106,7 +105,10 @@ export default function Autocomplete({
 
     const getPlaceholder = () => {
         return (
-            <div className="wrapper placeholder" style={{ opacity: isOpen && (fieldValue ? 0 : isOpen ? "0.4" : "1") }}>
+            <div
+                className="wrapper placeholder"
+                style={{ opacity: isOpen && (fieldValue ? 0 : isOpen ? "0.4" : "1") }}
+            >
                 <span className="autocomplete-toggle-title">{placeholder}</span>
             </div>
         );
@@ -120,13 +122,22 @@ export default function Autocomplete({
         const { title, startIcon, endIcon } = activeItem;
 
         return (
-            <div className="wrapper" style={{ opacity: isFocused && (fieldValue ? 0 : isOpen ? "0.4" : "1") }}>
+            <div
+                className="wrapper"
+                style={{ opacity: isFocused && (fieldValue ? 0 : isOpen ? "0.4" : "1") }}
+            >
                 {startIcon && <span className="startIcon">{startIcon}</span>}
                 <span className={`autocomplete-toggle-title`}>{title}</span>
                 {endIcon && <span className="endIcon">{endIcon}</span>}
             </div>
         );
     };
+
+    // when items get updated from API this resets active option
+    useEffect(() => {
+        setActiveOption(items.findIndex((item) => item.isActive === true));
+    }, [items]);
+    //
 
     // don't render menu while it closed (replace "isOpen" variable with "isAnimate" from autocmoplete classname and remove commented isOpen scopes around menu)
     // const [isAnimate, setIsAnimate] = useState(false);
@@ -161,7 +172,7 @@ export default function Autocomplete({
                     <span
                         className="endIcon autocomplete-toggle-icon"
                         onClick={(e) => {
-                            // e.stopPropagation();
+                            e.stopPropagation();
                             isOpen ? closeMenu() : openMenu();
                         }}
                     >
@@ -171,26 +182,26 @@ export default function Autocomplete({
             </div>
 
             {/* {isOpen && ( // don't render menu while it closed */}
-                <div className="autocomplete-menu">
-                    {!localItems.length ? (
-                        <div className="autocomplete-item disabled">no results found.</div>
-                    ) : (
-                        localItems.map(({ title, startIcon, endIcon, id }, index) => (
-                            <div
-                                key={index}
-                                id={`autocomplete-item-${id}`}
-                                className={`autocomplete-item ${activeOption === index ? "active" : ""}`}
-                                onClick={() => setActive(id)}
-                                ref={activeOption === index ? activeOptionRef : null}
-                            >
-                                {startIcon && <span className="startIcon">{startIcon}</span>}
-                                <span className="autocomplete-item-title">{title}</span>
-                                {endIcon && <span className="endIcon">{endIcon}</span>}
-                            </div>
-                        ))
-                    )}
-                    {children}
-                </div>
+            <div className="autocomplete-menu">
+                {!localItems.length ? (
+                    <div className="autocomplete-item disabled">no results found.</div>
+                ) : (
+                    localItems.map(({ title, startIcon, endIcon, id }, index) => (
+                        <div
+                            key={index}
+                            id={`autocomplete-item-${id}`}
+                            className={`autocomplete-item ${activeOption === index ? "active" : ""}`}
+                            onClick={() => setActive(id)}
+                            ref={activeOption === index ? activeOptionRef : null}
+                        >
+                            {startIcon && <span className="startIcon">{startIcon}</span>}
+                            <span className="autocomplete-item-title">{title}</span>
+                            {endIcon && <span className="endIcon">{endIcon}</span>}
+                        </div>
+                    ))
+                )}
+                {children}
+            </div>
             {/* )} */}
         </div>
     );

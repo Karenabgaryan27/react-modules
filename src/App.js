@@ -1,5 +1,4 @@
 import React, { lazy, Suspense } from "react";
-import { useLocation } from "react-router-dom";
 import {
     Home,
     About,
@@ -21,7 +20,7 @@ import {
     DragAndDropPage,
     ChatPage
 } from "./pages";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes,useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 
 // const About = lazy(()=> import('./pages/about/About.js')) // to make About page as a separate bundle for better performance

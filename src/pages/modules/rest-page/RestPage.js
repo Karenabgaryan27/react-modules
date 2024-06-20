@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useGlobalContext } from "../../../context";
-import { Header,Footer } from "../../../components";
+import { Header,Footer, ImageCrop } from "../../../components";
 
 export default function RestPage() {
     const { pageFade } = useGlobalContext().animations;
@@ -10,6 +10,7 @@ export default function RestPage() {
         <>
             <Header title="rest" />
             <motion.main {...pageFade} className="rest-page">
+                <ImageCrop/>
             </motion.main>
             <Footer/>
         </>

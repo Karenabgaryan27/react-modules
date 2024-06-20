@@ -85,16 +85,20 @@
             }
         }
         &-icon {
-            // transition-duration: 300ms;
-            // transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-            // transition-property: opacity, transform;
-            margin: 0 !important;
             position: absolute;
-            top: 0;
-            right: 0;
-            width: 45px;
-            // height: 35px;
-            height: 100%;
+            top:50%;
+            transform: translateY(-50%);
+            right: 3px;
+            height: 30px;
+            width: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 !important;
+            border-radius: 50%;
+            // &:hover {
+            //     background-color: color(primary,.1);
+            // }
             svg {
                 margin-top: -1px;
                 transition-duration: 300ms;

@@ -61,4 +61,5 @@ export { default as Button} from './button/Button.js'
 export { default as Dropdown} from './dropdown/Dropdown.js'
 export { default as Drawer} from './drawer/Drawer.js'
 export { default as Breadcrumbs} from './breadcrumbs/Breadcrumbs.js'
+export { default as ImageCrop} from './image-crop/ImageCrop.jsx'
 

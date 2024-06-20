@@ -105,6 +105,12 @@ export default function Select({
         );
     };
 
+    // when items get updated from API this resets active option
+    useEffect(()=>{
+        setActiveOption(items.findIndex((item) => item.isActive === true));
+    },[items])
+    // 
+
     // don't render menu while it closed (replace "isOpen" variable with "isAnimate" from select classname and remove commented isOpen scopes around menu)
     // const [isAnimate, setIsAnimate] = useState(false);
 

@@ -73,7 +73,7 @@ export default function useFetch() {
                  Ohm's Law Calculator, Percentage Calculator,Simple To Do Checklist).
                  Calculators available in google play. maximum assistent content length sould be 150 chatacters for each message, keep content short.
                  Be friendly and make short jokes. Display symbols and emojis in conversation.
-                 when visitors trying to leave say something like 'May the Force be with you'.`,
+                 when visitors trying to leave say something like 'May the Force be with you'. Also greet with Merry Christmas when it's a Christmas days, and 1 month after`,
         };
         const apiRequestBody = {
             model: "gpt-3.5-turbo",

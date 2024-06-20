@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useGlobalContext } from "../../../context";
-import { Header,Footer } from "../../../components";
+import { Header, Footer } from "../../../components";
 import Pagination from "@mui/material/Pagination";
 import useFetch from "../../../hooks/useFetch";
 
 function PaginationSection() {
     return (
         <section>
-
             <div className="container" style={{ display: "flex", flexDirection: "column", gap: "30px" }}>
                 <h2 className="display-2">pagination</h2>
                 <Pagination count={40} color="primary" />
@@ -80,7 +79,7 @@ function PaginationWithItemsSection() {
                     page={currentPage}
                     // defaultPage={3}
                     boundaryCount={2}
-                    onChange={(e, value) => setTempCurrentPage(value)}
+                    onChange={(e, value) => value !== currentPage && setTempCurrentPage(value)}
                 />
             </div>
         </section>
@@ -97,7 +96,7 @@ export default function PaginationPage() {
                 <PaginationSection />
                 <PaginationWithItemsSection />
             </motion.main>
-            <Footer/>
+            <Footer />
         </>
     );
 }

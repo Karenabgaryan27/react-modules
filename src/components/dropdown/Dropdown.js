@@ -82,6 +82,12 @@ export default function Dropdown({
         scrollIntoView();
     }, [activeOption]);
 
+    // when items get updated from API this resets active option
+    useEffect(() => {
+        setActiveOption(items.findIndex((item) => item.isActive === true));
+    }, [items]);
+    //
+
     // don't render menu while it closed (replace "isOpen" variable with "isAnimate" from dropdown classname and remove commented isOpen scopes around menu)
     // const [isAnimate, setIsAnimate] = useState(false);
 
@@ -93,7 +99,7 @@ export default function Dropdown({
     return (
         <div className={`dropdown ${isOpen ? "active" : ""}  ${className}`} ref={dropdownRef}>
             {/* you can wrap only Button with clickWrapper to allow menu closing when select-items clicked */}
-            <div className="dropdown-toggle-wrapper" ref={clickWrapper}>  
+            <div className="dropdown-toggle-wrapper" ref={clickWrapper}>
                 <Button
                     className={`dropdown-toggle`}
                     data-toggle="dropdown"

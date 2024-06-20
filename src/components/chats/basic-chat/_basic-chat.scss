@@ -107,6 +107,10 @@
         background-color: #fff;
         & > .wrapper {
             position: relative;
+            &.on-hold {
+                pointer-events: none;
+                opacity: 0.5;
+            }
             .field {
                 flex: 1;
                 .form-control {

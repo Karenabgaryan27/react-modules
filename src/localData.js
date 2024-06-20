@@ -26,6 +26,7 @@ const images = {
     flag: require("./assets/images/icons/flag.webp"),
     vertical: require("./assets/images/rest/vertical.jpg"),
     placeholder: require("./assets/images/placeholder.png"),
+    gifImage: require("./assets/images/gif-image.gif"),
 
 
     // hight resolution images
