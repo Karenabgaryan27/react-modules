@@ -1,7 +1,8 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Navigation, Pagination, EffectFade,Lazy, Autoplay } from "swiper";
+import SwiperCore, { Navigation, Pagination, EffectFade, Lazy, Autoplay } from "swiper";
 import localData from "../../../localData";
+import { v4 as uuidv4 } from "uuid";
 
 const effects = {
     // code bellow currently not working because of swiper.js/react merging issues, exept fade effect
@@ -45,6 +46,12 @@ export default function Carousel({
     // SwiperCore.use([ Lazy ])
     SwiperCore.use([Navigation, Pagination, EffectFade, Lazy, Autoplay]);
 
+    // const [id,setId] = useState('')
+
+    // useEffect(()=>{
+    //     setId(uuidv4())
+    // },[])
+
     return (
         <>
             {!items || !Object.keys(items).length ? (
@@ -67,14 +74,18 @@ export default function Carousel({
                             // console.log("slide change");
                         }}
                         // autoplay={{ delay: 3000, disableOnInteraction: false }}
-                        // speed={1000} 
+                        // speed={1000}
                         navigation={{
                             prevEl: navigationPrevRef.current,
                             nextEl: navigationNextRef.current,
+                            // prevEl: document.querySelector(`prev-${id}`),
+                            // nextEl: document.querySelector(`next-${id}`),
                         }}
                         onBeforeInit={(swiper) => {
                             swiper.params.navigation.prevEl = navigationPrevRef.current;
                             swiper.params.navigation.nextEl = navigationNextRef.current;
+                            // swiper.params.navigation.prevEl = document.querySelector(`prev-${id}`);
+                            // swiper.params.navigation.nextEl = document.querySelector(`next-${id}`);
                         }}
                         breakpoints={{
                             640: {
@@ -100,6 +111,7 @@ export default function Carousel({
                     </Swiper>
                     <div className="carousel-angles">
                         <button
+                            id={`prev-${uuidv4()}`}
                             className="carousel-angle prev btn btn-circle-dark"
                             color="primary"
                             ref={navigationPrevRef}
@@ -107,6 +119,7 @@ export default function Carousel({
                             {angleLeft}
                         </button>
                         <button
+                            id={`next-${uuidv4()}`}
                             className="carousel-angle next btn btn-circle-dark"
                             color="primary"
                             ref={navigationNextRef}
